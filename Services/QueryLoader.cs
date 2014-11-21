@@ -11,7 +11,7 @@ namespace Services
             var req = WebRequest.Create(uri);
             WebResponse resp = req.GetResponse();
             Stream stream = resp.GetResponseStream();
-            if (stream == null) 
+            if (stream == null)
                 return null;
 
             var streamReader = new StreamReader(stream);
