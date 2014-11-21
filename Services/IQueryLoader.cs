@@ -2,7 +2,7 @@
 
 namespace Services
 {
-    interface IQueryLoader
+    public interface IQueryLoader
     {
         String LoadData(String uri);
     }

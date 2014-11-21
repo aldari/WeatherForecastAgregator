@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using Moq;
 using NUnit.Framework;
 using Services;
 
@@ -23,21 +24,9 @@ namespace TestProject
         }
 
         [Test]
-        public void SecondTest()
-        {
-            String str = File.ReadAllText(@"mock/wundergroundAll.txt");
-
-            XElement xelement = XElement.Parse(str);
-            var forecastNodes = xelement.Element("forecast").Element("simpleforecast").Element("forecastdays").Elements();
-            Assert.IsNotNull(forecastNodes);
-            Assert.AreEqual(10, forecastNodes.Count());
-        }
-
-        [Test]
         public void ThirdTest()
         {
             String str = File.ReadAllText(@"mock/wundergroundNode.txt");
-
             var node = XElement.Parse(str);
             
             var date = new DateTime(
@@ -65,6 +54,19 @@ namespace TestProject
         {
             var str = "21 11, 2014 19:00 YEKT";
             DateTime.Parse(str).ToShortDateString();
+        }
+
+        [Test]
+        public void WundergroundForecastTest()
+        {
+            var loaderMock = new Mock<IQueryLoader>();
+            String str = File.ReadAllText(@"mock/wundergroundAll.txt");
+            var wundergroundService = new WundergroundForecast();
+
+            var result = wundergroundService.ForecastData(str);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(10, result.Count());
         }
     }
 }
