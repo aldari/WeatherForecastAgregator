@@ -50,16 +50,9 @@ namespace TestProject
             Assert.AreEqual(1, maxTemperature);
         }
 
-        public void ParseDate()
-        {
-            var str = "21 11, 2014 19:00 YEKT";
-            DateTime.Parse(str).ToShortDateString();
-        }
-
         [Test]
         public void WundergroundForecastTest()
         {
-            var loaderMock = new Mock<IQueryLoader>();
             String str = File.ReadAllText(@"mock/wundergroundAll.txt");
             var wundergroundService = new WundergroundForecast();
 
@@ -67,6 +60,24 @@ namespace TestProject
 
             Assert.IsNotNull(result);
             Assert.AreEqual(10, result.Count());
+        }
+
+        [Test]
+        public void ParseXmlForWundergroundForecast()
+        {
+            String str = File.ReadAllText(@"mock/wundergroundNode.txt");
+            var wundergroundService = new WundergroundForecast();
+
+            var node = XElement.Parse(str);
+            var dto = wundergroundService.ParseNode(node);
+
+            Assert.AreEqual(new DateTime(2014, 11, 21), dto.Date);
+            Assert.AreEqual("Облачно", dto.Description);
+            Assert.AreEqual(81, dto.Humidity);
+            Assert.AreEqual(18, dto.WindSpeed);
+            Assert.AreEqual("ЗСЗ", dto.WindDirection);
+            Assert.AreEqual(-6, dto.MinTemperature);
+            Assert.AreEqual(1, dto.MaxTemperature);
         }
     }
 }
