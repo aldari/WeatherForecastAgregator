@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-using System.Xml.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Services;
 using System;
 using System.IO;
