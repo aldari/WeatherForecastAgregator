@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnglishToRussianConvertor.cs" />
+    <Compile Include="OpenweathermapService.cs" />
     <Compile Include="Dto\ForecastDto.cs" />
     <Compile Include="IQueryLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

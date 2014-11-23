@@ -39,6 +39,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnglishToRussianConvertorTest.cs" />
+    <Compile Include="OpenweathermapServiceTest.cs" />
     <Compile Include="WeatherServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,10 +63,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="mock\wundergroundAll.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="mock\openweathermap.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="mock\wundergroundNode.txt">
+    <Content Include="mock\wundergroundAll.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
