@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="EnglishToRussianConvertorTest.cs" />
     <Compile Include="OpenweathermapServiceTest.cs" />
-    <Compile Include="WeatherServiceTest.cs" />
+    <Compile Include="WundergroundServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Moq">
