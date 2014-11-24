@@ -8,9 +8,23 @@ namespace Services
 {
     public class WundergroundForecast
     {
-        public IEnumerable<ForecastDto> ForecastData(String str)
+        private readonly IQueryLoader _queryLoader;
+
+        public WundergroundForecast(IQueryLoader loader)
         {
-            XElement xelement = XElement.Parse(str);
+            _queryLoader = loader;
+        }
+
+        private String RequestPath(String city)
+        {
+            const string magicString = "http://api.wunderground.com/api/7b9175d0dab642ae/forecast10day/lang:RU/conditions/q/Russia/{0}.xml";
+            return String.Format(magicString, city);
+        }
+
+        public IEnumerable<ForecastDto> ForecastData(String city)
+        {
+            var content = _queryLoader.LoadData(RequestPath(city));
+            XElement xelement = XElement.Parse(content);
             var forecastNodes = xelement.Element("forecast").Element("simpleforecast").Element("forecastdays").Elements();
             return forecastNodes.Select(ParseNode);
         }

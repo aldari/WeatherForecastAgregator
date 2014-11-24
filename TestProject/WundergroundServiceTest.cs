@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using Moq;
 using NUnit.Framework;
 using Services;
 
@@ -9,36 +10,15 @@ namespace TestProject
     [TestFixture]
     public class WeatherServiceTest
     {
-        public void FirstTest()
-        {
-            const string magicString = "http://api.wunderground.com/api/7b9175d0dab642ae/forecast10day/lang:RU/conditions/q/Russia/{0}.xml";
-            var uri = String.Format(magicString, "Chelyabinsk");
-
-            var xmld = new QueryLoader().LoadData(uri);
-            //Console.WriteLine(xmld);
-
-            File.WriteAllText("check.txt", xmld);
-        }
-
-        [Test]
-        public void WundergroundForecastTest()
-        {
-            String content = File.ReadAllText(@"mock/wundergroundAll.txt");
-            var wundergroundService = new WundergroundForecast();
-
-            var result = wundergroundService.ForecastData(content);
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(10, result.Count());
-        }
-
         [Test]
         public void ParseXmlForWundergroundForecast()
         {
-            String content = File.ReadAllText(@"mock/wundergroundAll.txt");
-            var wundergroundService = new WundergroundForecast();
+            var city = "Chelyabinsk";
+            var mockLoader = new Mock<IQueryLoader>();
+            mockLoader.Setup(m => m.LoadData(It.IsAny<String>())).Returns(File.ReadAllText(@"mock/wundergroundAll.txt"));
+            var wundergroundService = new WundergroundForecast(mockLoader.Object);
 
-            var result = wundergroundService.ForecastData(content);
+            var result = wundergroundService.ForecastData(city);
             var dto = result.First();
 
             Assert.AreEqual(new DateTime(2014, 11, 21), dto.Date);
@@ -48,6 +28,20 @@ namespace TestProject
             Assert.AreEqual("ЗСЗ", dto.WindDirection);
             Assert.AreEqual(-6, dto.MinTemperature);
             Assert.AreEqual(1, dto.MaxTemperature);
+        }
+
+        [Test]
+        public void TestCommonUsage()
+        {
+            var city = "Chelyabinsk";
+            var mockLoader = new Mock<IQueryLoader>();
+            mockLoader.Setup(m => m.LoadData(It.IsAny<String>())).Returns(File.ReadAllText(@"mock/wundergroundAll.txt"));
+            var wundergroundService = new WundergroundForecast(mockLoader.Object);
+
+            var result = wundergroundService.ForecastData(city);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(10, result.Count());
         }
     }
 }
