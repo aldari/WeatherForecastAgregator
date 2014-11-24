@@ -13,7 +13,7 @@ namespace Services
         public IEnumerable<ForecastDto> ForecastData(string content)
         {
             var xelement = XElement.Parse(content);
-            return xelement.Element("forecast").Elements().Select(ParseNode).ToList();
+            return xelement.Element("forecast").Elements().Select(ParseNode);
         }
 
         private ForecastDto ParseNode(XElement node)

@@ -12,7 +12,7 @@ namespace Services
         {
             XElement xelement = XElement.Parse(str);
             var forecastNodes = xelement.Element("forecast").Element("simpleforecast").Element("forecastdays").Elements();
-            return forecastNodes.Select(ParseNode).ToList();
+            return forecastNodes.Select(ParseNode);
         }
 
         private ForecastDto ParseNode(XElement node)
