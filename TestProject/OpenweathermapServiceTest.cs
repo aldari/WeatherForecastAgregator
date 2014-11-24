@@ -21,8 +21,8 @@ namespace TestProject
         public void OpenweathermapServiceReturnForecastsTest()
         {
             String content = File.ReadAllText(@"mock/openweathermap.txt");
-
             var service = new OpenweathermapService();
+
             var result = service.ForecastData(content);
 
             Assert.IsNotNull(result);
@@ -45,6 +45,12 @@ namespace TestProject
             Assert.AreEqual(-22, dto.MinTemperature);
             Assert.AreEqual("ССВ", dto.WindDirection);
             Assert.AreEqual(7, dto.WindSpeed);
+        }
+
+        [Test]
+        public void TestCommonUsage()
+        {
+            
         }
     }
 }

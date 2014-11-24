@@ -6,7 +6,7 @@ using Services.Dto;
 
 namespace Services
 {
-    public class WundergroundForecast
+    public class WundergroundForecast : IForecastService
     {
         private readonly IQueryLoader _queryLoader;
 
