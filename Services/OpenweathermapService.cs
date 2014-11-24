@@ -7,11 +7,23 @@ using Services.Dto;
 
 namespace Services
 {
-    public class OpenweathermapService
+    public class OpenweathermapService: IForecastService
     {
-
-        public IEnumerable<ForecastDto> ForecastData(string content)
+        private readonly IQueryLoader _queryLoader;
+        public OpenweathermapService(IQueryLoader loader)
         {
+            _queryLoader = loader;
+        }
+
+        private String RequestPath(String city)
+        {
+            const string magicString = "http://api.openweathermap.org/data/2.5/forecast/daily?q={0}&mode=xml&units=metric&cnt=10&lang=ru";
+            return String.Format(magicString, city);
+        }
+
+        public IEnumerable<ForecastDto> ForecastData(string city)
+        {
+            var content = _queryLoader.LoadData(RequestPath(city));
             var xelement = XElement.Parse(content);
             return xelement.Element("forecast").Elements().Select(ParseNode);
         }

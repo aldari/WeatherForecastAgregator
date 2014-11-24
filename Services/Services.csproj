@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnglishToRussianConvertor.cs" />
+    <Compile Include="IForecastService.cs" />
     <Compile Include="OpenweathermapService.cs" />
     <Compile Include="Dto\ForecastDto.cs" />
     <Compile Include="IQueryLoader.cs" />

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
 using Services;
 using System;
 using System.IO;
@@ -6,36 +7,17 @@ using System.Linq;
 
 namespace TestProject
 {
-    public class OpenweathermapServiceTest 
+    public class OpenweathermapServiceTest
     {
-        public void Test()
-        {
-            const string magicString = "http://api.openweathermap.org/data/2.5/forecast/daily?q={0}&mode=xml&units=metric&cnt=10&lang=ru";
-            var uri = String.Format(magicString, "Chelyabinsk");
-
-            var xmld = new QueryLoader().LoadData(uri);
-            File.WriteAllText("openweathermap.txt", xmld);
-        }
-
-        [Test]
-        public void OpenweathermapServiceReturnForecastsTest()
-        {
-            String content = File.ReadAllText(@"mock/openweathermap.txt");
-            var service = new OpenweathermapService();
-
-            var result = service.ForecastData(content);
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(10, result.Count());
-        }
-
         [Test]
         public void XmlNodeParseTest()
         {
-            String content = File.ReadAllText(@"mock/openweathermap.txt");
-            var service = new OpenweathermapService();
+            const string city = "Chelyabinsk";
+            var mockLoader = new Mock<IQueryLoader>();
+            mockLoader.Setup(m => m.LoadData(It.IsAny<String>())).Returns(File.ReadAllText(@"mock/openweathermap.txt"));
+            var service = new OpenweathermapService(mockLoader.Object);
 
-            var result = service.ForecastData(content);
+            var result = service.ForecastData(city);
             var dto = result.First();
             
             Assert.AreEqual(new DateTime(2014, 11, 23), dto.Date);
@@ -50,7 +32,15 @@ namespace TestProject
         [Test]
         public void TestCommonUsage()
         {
-            
+            const string city = "Chelyabinsk";
+            var mockLoader = new Mock<IQueryLoader>();
+            mockLoader.Setup(m => m.LoadData(It.IsAny<String>())).Returns(File.ReadAllText(@"mock/openweathermap.txt"));
+            var service = new OpenweathermapService(mockLoader.Object);
+
+            var result = service.ForecastData(city);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(10, result.Count());
         }
     }
 }
