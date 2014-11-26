@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppService.cs" />
     <Compile Include="Core\Entities\BaseEntity.cs" />
     <Compile Include="Core\Entities\City.cs" />
     <Compile Include="Core\Entities\WeatherForecast.cs" />
