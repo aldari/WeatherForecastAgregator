@@ -39,6 +39,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Entities\BaseEntity.cs" />
+    <Compile Include="Core\Entities\City.cs" />
+    <Compile Include="Core\Entities\WeatherForecast.cs" />
+    <Compile Include="Core\Entities\ForecastService.cs" />
+    <Compile Include="Core\IUnitOfWork.cs" />
+    <Compile Include="Core\Repositories\IWeatherForecastRepository.cs" />
+    <Compile Include="Core\Repositories\IForecastServiceEntityRepository.cs" />
+    <Compile Include="Core\Repositories\ICityRepository.cs" />
+    <Compile Include="Core\Repositories\IRepository.cs" />
+    <Compile Include="Core\UnitOfWorkAttribute.cs" />
     <Compile Include="EnglishToRussianConvertor.cs" />
     <Compile Include="IForecastService.cs" />
     <Compile Include="OpenweathermapService.cs" />
@@ -48,6 +58,7 @@
     <Compile Include="QueryLoader.cs" />
     <Compile Include="WundergroundForecast.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
