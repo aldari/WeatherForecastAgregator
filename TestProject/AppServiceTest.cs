@@ -16,7 +16,7 @@ namespace TestProject
         {
             var cityRepositoryMock = new Mock<ICityRepository>();
             cityRepositoryMock.Setup(m => m.GetAll())
-                .Returns(new City[]
+                .Returns(new[]
                 {
                     new City{ Id = 1 },
                     new City{ Id = 2 },
@@ -32,10 +32,17 @@ namespace TestProject
             Assert.AreEqual(3, result[2].Id);
         }
 
+        public class AvgForecast
+        {
+            public DateTime Date { get; set; }
+            public int AvgTemperature { get; set; }
+            public int AvgHumidity { get; set; }
+        }
+
         [Test]
         public void GetDataForOneCity()
         {
-            var fakeData = new WeatherForecast[]
+            var fakeData = new[]
             {
                 //First City
                 // First Service
@@ -92,20 +99,27 @@ namespace TestProject
             };
 
             const int cityId = 1;
+            var mock = new Mock<IWeatherForecastRepository>();
+            mock.Setup(m => m.GetAll()).Returns(fakeData.AsQueryable());
+
             var numberGroups =
-            from n in fakeData.Where(c => c.City.Id == cityId)
-            group n by n.Service.Id into g
-            select new { ServiceNumber = g.Key, avgTemperature = g.Average(x=>x.DayTemperature), avgHumidity = g.Average(x=>x.Humidity) };
-            foreach (var numberGroup in numberGroups)
-            {
-                Console.WriteLine(numberGroup.ServiceNumber);
-                Console.WriteLine(numberGroup.avgTemperature);
-                Console.WriteLine(numberGroup.avgHumidity);
-            }
-//            var mock = new Mock<IWeatherForecastRepository>();
-//            mock.Setup(m => m.GetAll()).Returns(fakeData.AsQueryable());
+                from n in fakeData.Where(c => c.City.Id == cityId)
+                group n by n.Date into g
+                select new AvgForecast{ Date = g.Key, AvgTemperature = (int)g.Average(x=>x.DayTemperature), AvgHumidity = (int)g.Average(x=>x.Humidity) };
 
+            var actual = numberGroups.ToList();
 
+            Assert.AreEqual(new DateTime(2014, 1, 1), actual[0].Date);
+            Assert.AreEqual(15, actual[0].AvgTemperature);
+            Assert.AreEqual(20, actual[0].AvgHumidity);
+
+            Assert.AreEqual(new DateTime(2014, 1, 2), actual[1].Date);
+            Assert.AreEqual(20, actual[1].AvgTemperature);
+            Assert.AreEqual(30, actual[1].AvgHumidity);
+
+            Assert.AreEqual(new DateTime(2014, 1, 3), actual[2].Date);
+            Assert.AreEqual(30, actual[2].AvgTemperature);
+            Assert.AreEqual(50, actual[2].AvgHumidity);
         }
     }
 }
