@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using Services.Dto;
+using Services.Weather.Dto;
 
-namespace Services
+namespace Services.Weather.Impl
 {
     public class WundergroundForecast : IForecastService
     {

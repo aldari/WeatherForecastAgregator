@@ -4,6 +4,7 @@ using System.Linq;
 using Moq;
 using NUnit.Framework;
 using Services;
+using Services.Weather.Impl;
 
 namespace TestProject
 {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Services.Dto;
+using Services.Weather.Dto;
 
-namespace Services
+namespace Services.Weather
 {
     public interface IForecastService
     {

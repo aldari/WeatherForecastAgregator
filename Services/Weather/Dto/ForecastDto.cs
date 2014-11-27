@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Services.Dto
+namespace Services.Weather.Dto
 {
     public class ForecastDto
     {
