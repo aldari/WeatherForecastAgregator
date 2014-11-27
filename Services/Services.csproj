@@ -53,12 +53,12 @@
     <Compile Include="IQueryLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryLoader.cs" />
-    <Compile Include="WeatherForecast\Dto\ForecastDto.cs" />
-    <Compile Include="WeatherForecast\EnglishToRussianConvertor.cs" />
-    <Compile Include="WeatherForecast\IForecastService.cs" />
-    <Compile Include="WeatherForecast\Impl\OpenweathermapService.cs" />
-    <Compile Include="WeatherForecast\Impl\WorldweatheronlineService.cs" />
-    <Compile Include="WeatherForecast\Impl\WundergroundForecast.cs" />
+    <Compile Include="Weather\Dto\ForecastDto.cs" />
+    <Compile Include="Weather\EnglishToRussianConvertor.cs" />
+    <Compile Include="Weather\IForecastService.cs" />
+    <Compile Include="Weather\Impl\OpenweathermapService.cs" />
+    <Compile Include="Weather\Impl\WorldweatheronlineService.cs" />
+    <Compile Include="Weather\Impl\WundergroundForecast.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
