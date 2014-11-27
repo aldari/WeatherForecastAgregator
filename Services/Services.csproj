@@ -49,6 +49,8 @@
     <Compile Include="Core\Repositories\IForecastServiceEntityRepository.cs" />
     <Compile Include="Core\Repositories\ICityRepository.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
+    <Compile Include="Core\Services\Dto\AvgForecastDto.cs" />
+    <Compile Include="Core\Services\AverageDataService.cs" />
     <Compile Include="Core\UnitOfWorkAttribute.cs" />
     <Compile Include="IQueryLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,6 +5,7 @@ using NUnit.Framework;
 using Services;
 using Services.Core.Entities;
 using Services.Core.Repositories;
+using Services.Core.Services;
 
 namespace TestProject
 {
@@ -32,17 +33,10 @@ namespace TestProject
             Assert.AreEqual(3, result[2].Id);
         }
 
-        public class AvgForecast
-        {
-            public DateTime Date { get; set; }
-            public int AvgTemperature { get; set; }
-            public int AvgHumidity { get; set; }
-        }
-
         [Test]
-        public void GetDataForOneCity()
+        public void GetAverageDataForOneCityTest()
         {
-            var fakeData = new[]
+            var mockData = new[]
             {
                 //First City
                 // First Service
@@ -99,13 +93,11 @@ namespace TestProject
             };
 
             const int cityId = 1;
-            var mock = new Mock<IWeatherForecastRepository>();
-            mock.Setup(m => m.GetAll()).Returns(fakeData.AsQueryable());
+            var forecastRepositoryMock = new Mock<IWeatherForecastRepository>();
+            forecastRepositoryMock.Setup(m => m.GetAll()).Returns(mockData.AsQueryable());
+            var service = new AverageDataService(forecastRepositoryMock.Object);
 
-            var numberGroups =
-                from n in fakeData.Where(c => c.City.Id == cityId)
-                group n by n.Date into g
-                select new AvgForecast{ Date = g.Key, AvgTemperature = (int)g.Average(x=>x.DayTemperature), AvgHumidity = (int)g.Average(x=>x.Humidity) };
+            var numberGroups = service.GetAverageDataForOneCity(cityId);
 
             var actual = numberGroups.ToList();
 
