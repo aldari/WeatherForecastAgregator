@@ -10,7 +10,7 @@ namespace ToBeSeen.Installers
 	{
 		public void Install(IWindsorContainer container, IConfigurationStore store)
 		{
-			container.Register(AllTypes.FromThisAssembly().Pick()
+			container.Register(Types.FromThisAssembly().Pick()
 			                   	.If(Component.IsInSameNamespaceAs<FormsAuthenticationService>())
 			                   	.LifestyleTransient()
 			                   	.WithService.DefaultInterfaces());

@@ -83,7 +83,9 @@ namespace ToBeSeen
 		private static void BootstrapContainer()
 		{
 			container = new WindsorContainer()
-				.Install(FromAssembly.This());
+				.Install(FromAssembly.This(),
+                FromAssembly.Named("Data.NHibernate"),
+                FromAssembly.Named("Services"));
 			var controllerFactory = new WindsorControllerFactory(container.Kernel);
 			ControllerBuilder.Current.SetControllerFactory(controllerFactory);
 		}

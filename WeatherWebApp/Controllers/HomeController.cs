@@ -1,16 +1,11 @@
 ﻿using System.Web.Mvc;
 
-using NHibernate;
-
 namespace ToBeSeen.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly ISession session;
-
-		public HomeController(ISession session)
+		public HomeController()
 		{
-			this.session = session;
 		}
 
 		public ActionResult About()
@@ -21,7 +16,6 @@ namespace ToBeSeen.Controllers
 		public ActionResult Index()
 		{
 			ViewBag.Message = "Welcome to ToBeSeen WebSite!";
-			//ViewBag.EventCount = session.QueryOver<Event>().RowCount();
 
 			return View();
 		}
