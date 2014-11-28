@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DoNotMapAttribute.cs" />
+    <Compile Include="GenerateDb.cs" />
     <Compile Include="PersistenceFacility.cs" />
     <Compile Include="PersistenceInstaller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

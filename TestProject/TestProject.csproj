@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppServiceTest.cs" />
+    <Compile Include="GenerateDatabase.cs" />
     <Compile Include="EnglishToRussianConvertorTest.cs" />
     <Compile Include="IdentifierTest.cs" />
     <Compile Include="OpenweathermapServiceTest.cs" />
