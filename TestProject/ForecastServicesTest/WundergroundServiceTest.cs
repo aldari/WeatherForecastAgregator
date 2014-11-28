@@ -6,7 +6,7 @@ using NUnit.Framework;
 using Services;
 using Services.Weather.Impl;
 
-namespace TestProject
+namespace TestProject.ForecastServicesTest
 {
     [TestFixture]
     public class WeatherServiceTest

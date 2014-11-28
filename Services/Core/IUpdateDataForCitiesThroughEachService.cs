@@ -1,7 +1,7 @@
 ﻿using Services.Core.Entities;
 using Services.Weather;
 
-namespace Services.Core.Services
+namespace Services.Core
 {
     public interface IUpdateDataForCitiesThroughEachService
     {

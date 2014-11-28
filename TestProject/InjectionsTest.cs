@@ -15,9 +15,9 @@ namespace TestProject
             var windsorContainer = new WindsorContainer();
 
             windsorContainer.Install(
-                FromAssembly.Named("Dependency"),
-                FromAssembly.Named("Services"),
-                FromAssembly.Named("Data.NHibernate"));
+                FromAssembly.Named("Data.NHibernate"),
+                FromAssembly.Named("Services")
+                );
 
             var service = windsorContainer.Resolve<IGetCitiesService>();
             var data = service.GetCities();
@@ -31,9 +31,9 @@ namespace TestProject
             var windsorContainer = new WindsorContainer();
 
             windsorContainer.Install(
-                FromAssembly.Named("Dependency"),
-                FromAssembly.Named("Services"),
-                FromAssembly.Named("Data.NHibernate"));
+                FromAssembly.Named("Data.NHibernate"),
+                FromAssembly.Named("Services")
+                );
 
             var service = windsorContainer.Resolve<IUpdateDataForCitiesThroughEachService>();
             var fs = windsorContainer.Resolve<IForecastService>();
@@ -46,9 +46,9 @@ namespace TestProject
             var windsorContainer = new WindsorContainer();
 
             windsorContainer.Install(
-                FromAssembly.Named("Dependency"),
-                FromAssembly.Named("Services"),
-                FromAssembly.Named("Data.NHibernate"));
+                FromAssembly.Named("Data.NHibernate"),
+                FromAssembly.Named("Services")
+                );
 
             var service = windsorContainer.Resolve<IAverageDataService>();
             var data = service.GetAverageDataForOneCity(3);

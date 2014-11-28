@@ -1,12 +1,12 @@
-﻿using Moq;
-using NUnit.Framework;
-using Services;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
+using Moq;
+using NUnit.Framework;
+using Services;
 using Services.Weather.Impl;
 
-namespace TestProject
+namespace TestProject.ForecastServicesTest
 {
     public class OpenweathermapServiceTest
     {
