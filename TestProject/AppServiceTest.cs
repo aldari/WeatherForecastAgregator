@@ -113,5 +113,6 @@ namespace TestProject
             Assert.AreEqual(30, actual[2].AvgTemperature);
             Assert.AreEqual(50, actual[2].AvgHumidity);
         }
+
     }
 }

@@ -6,11 +6,11 @@ using Services.Weather.Dto;
 
 namespace Services.Weather.Impl
 {
-    public class WundergroundForecast : IForecastService
+    public class WundergroundService : IForecastService
     {
         private readonly IQueryLoader _queryLoader;
 
-        public WundergroundForecast(IQueryLoader loader)
+        public WundergroundService(IQueryLoader loader)
         {
             _queryLoader = loader;
         }

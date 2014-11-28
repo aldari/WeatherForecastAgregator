@@ -17,7 +17,7 @@ namespace TestProject
             var city = "Chelyabinsk";
             var mockLoader = new Mock<IQueryLoader>();
             mockLoader.Setup(m => m.LoadData(It.IsAny<String>())).Returns(File.ReadAllText(@"mock/wundergroundAll.txt"));
-            var wundergroundService = new WundergroundForecast(mockLoader.Object);
+            var wundergroundService = new WundergroundService(mockLoader.Object);
 
             var result = wundergroundService.ForecastData(city);
             var dto = result.First();
@@ -37,7 +37,7 @@ namespace TestProject
             var city = "Chelyabinsk";
             var mockLoader = new Mock<IQueryLoader>();
             mockLoader.Setup(m => m.LoadData(It.IsAny<String>())).Returns(File.ReadAllText(@"mock/wundergroundAll.txt"));
-            var wundergroundService = new WundergroundForecast(mockLoader.Object);
+            var wundergroundService = new WundergroundService(mockLoader.Object);
 
             var result = wundergroundService.ForecastData(city);
 

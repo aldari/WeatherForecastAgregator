@@ -14,7 +14,7 @@ namespace Services
             container.Register(
                 Component.For<IQueryLoader>().ImplementedBy<QueryLoader>().LifestyleTransient(),
 
-                Component.For<IForecastService>().ImplementedBy<WundergroundForecast>().LifestyleTransient(),
+                Component.For<IForecastService>().ImplementedBy<WundergroundService>().LifestyleTransient(),
                 Component.For<IForecastService>().ImplementedBy<OpenweathermapService>().LifestyleTransient()
                 );
 

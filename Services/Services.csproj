@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppService.cs" />
+    <Compile Include="Identifier.cs" />
+    <Compile Include="IIdentifier.cs" />
     <Compile Include="ServiceInstaller.cs" />
     <Compile Include="Core\Entities\BaseEntity.cs" />
     <Compile Include="Core\Entities\City.cs" />
@@ -67,7 +69,7 @@
     <Compile Include="Weather\IForecastService.cs" />
     <Compile Include="Weather\Impl\OpenweathermapService.cs" />
     <Compile Include="Weather\Impl\WorldweatheronlineService.cs" />
-    <Compile Include="Weather\Impl\WundergroundForecast.cs" />
+    <Compile Include="Weather\Impl\WundergroundService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
