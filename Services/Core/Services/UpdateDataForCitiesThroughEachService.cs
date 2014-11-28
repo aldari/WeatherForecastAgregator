@@ -22,6 +22,7 @@ namespace Services.Core.Services
             _identifier = identifier;
         }
 
+        [UnitOfWork]
         public void Execute()
         {            
             foreach (var city in _cityRepository.GetAll())
@@ -34,12 +35,12 @@ namespace Services.Core.Services
         public void ProceedCity(IForecastService service, City city)
         {
             var result = service.ForecastData(city.Name);
-            //var serviceId = _identifier.IdentifierFor(service.GetType());
+            var serviceId = _identifier.IdentifierFor(service.GetType());
 
-            //var data =
-            //    _forecastRepository.GetAll().Where(x => x.City.Id == city.Id && x.Service.Id == serviceId).ToList();
-            //foreach (var item in data)
-            //    _forecastRepository.Delete(item.Id);
+            var data =
+                _forecastRepository.GetAll().Where(x => x.City.Id == city.Id && x.Service.Id == serviceId);
+            foreach (var item in data)
+                _forecastRepository.Delete(item.Id);
             foreach (var dto in result)
             {
                 _forecastRepository.Insert(new WeatherForecast
@@ -47,7 +48,8 @@ namespace Services.Core.Services
                     City = city,
                     Date = dto.Date,
                     Humidity = dto.Humidity,
-                    DayTemperature = dto.MaxTemperature
+                    DayTemperature = dto.MaxTemperature,
+                    Service = new ForecastServiceEntity{Id = serviceId}
                 });
             }
         }

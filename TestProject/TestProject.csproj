@@ -40,6 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppServiceTest.cs" />
+    <Compile Include="InjectionsTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GenerateDatabase.cs" />
     <Compile Include="EnglishToRussianConvertorTest.cs" />
     <Compile Include="IdentifierTest.cs" />
@@ -70,6 +73,10 @@
     <ProjectReference Include="..\Data.NHibernate\Data.NHibernate.csproj">
       <Project>{355CFF4C-DA2F-4A8E-9596-20974326D7D9}</Project>
       <Name>Data.NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dependency\Dependency.csproj">
+      <Project>{a7ec1f97-2f0e-4681-9bc0-7eab8f2d30e9}</Project>
+      <Name>Dependency</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{1d474ccb-6d6c-4a28-b357-c252bbab5d66}</Project>

@@ -23,7 +23,7 @@ namespace TestProject
                     new City{ Id = 2 },
                     new City{ Id = 3 }
                 }.AsQueryable());
-            var service = new AppService(cityRepositoryMock.Object);
+            var service = new GetCitiesService(cityRepositoryMock.Object);
 
             var result = service.GetCities();
 

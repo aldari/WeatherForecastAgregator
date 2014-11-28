@@ -5,7 +5,7 @@ using Services.Core.Services.Dto;
 
 namespace Services.Core.Services
 {
-    public class AverageDataService
+    public class AverageDataService : IAverageDataService
     {
         private readonly IWeatherForecastRepository _forecastRepository;
 
@@ -14,7 +14,8 @@ namespace Services.Core.Services
             _forecastRepository = forecastRepository;
         }
 
-        public IList<AvgForecastDto> GetAverageDataForOneCity(int cityId)
+        [UnitOfWork]
+        public virtual IList<AvgForecastDto> GetAverageDataForOneCity(int cityId)
         {
             var numberGroups =
                 from n in _forecastRepository.GetAll().Where(c => c.City.Id == cityId)

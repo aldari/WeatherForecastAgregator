@@ -47,8 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppService.cs" />
     <Compile Include="Core\IUpdateDataForCitiesThroughEachService.cs" />
+    <Compile Include="Core\Services\GetCitiesService.cs" />
+    <Compile Include="Core\IGetCitiesService.cs" />
+    <Compile Include="Core\IAverageDataService.cs" />
     <Compile Include="Core\Services\UpdateDataForCitiesThroughEachService.cs" />
     <Compile Include="Identifier.cs" />
     <Compile Include="IIdentifier.cs" />
