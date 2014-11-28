@@ -2,6 +2,7 @@
 using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
+using Services.Core.Services;
 using Services.Weather;
 using Services.Weather.Impl;
 
@@ -19,6 +20,12 @@ namespace Services
                 );
 
             container.Kernel.Resolver.AddSubResolver(new ArrayResolver(container.Kernel));
+
+            container.Register(
+                Component.For<IIdentifier>().ImplementedBy<Identifier>().LifestyleSingleton(),
+                Component.For<IUpdateDataForCitiesThroughEachService>()
+                    .ImplementedBy<UpdateDataForCitiesThroughEachService>().LifestyleTransient()
+                );
         }
     }
 }
