@@ -125,23 +125,30 @@ page width. Or, you can specify an exact pixel width. */
     line-height: normal;
     margin: 0;
     font-size: .9em;
+    clear: both;
 }
 
+#wrapper {
+    height: auto;
+}
 /* TAB MENU   
 ----------------------------------------------------------*/
 ul#menu
 {
-    border-bottom: 1px #5C87B2 solid;
+    
     padding: 0 0 2px;
     position: relative;
     margin: 0;
-    text-align: right;
+    float: left;
+    display: block;
+    margin-right: 2em;
 }
 
 ul#menu li
 {
-    display: inline;
     list-style: none;
+    margin-bottom: 5px;
+    display: block;
 }
 
 ul#menu li#greeting
@@ -161,6 +168,8 @@ ul#menu li a
     line-height: 2.8em;
     background-color: #e8eef4;
     color: #034af3;
+    display: block;
+    width: 8em;
 }
 
 ul#menu li a:hover
@@ -267,7 +276,7 @@ div#title
     font-size:1.1em;
     display:block;
     text-align:right;
-    margin:10px;
+    margin:40px;
     color:White;
 }
 

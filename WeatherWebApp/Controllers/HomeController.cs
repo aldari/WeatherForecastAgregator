@@ -1,25 +1,39 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using AutoMapper;
 using DotNetOpenAuth.OpenId.Extensions.AttributeExchange;
+using Services.Core;
+using Services.Core.Entities;
 using WeatherWebApp.Models;
 
 namespace WeatherWebApp.Controllers
 {
 	public class HomeController : Controller
 	{
-		public HomeController()
+	    private IGetCitiesService _citiesService;
+		public HomeController(IGetCitiesService getCitiesService)
 		{
+		    _citiesService = getCitiesService;
 		}
 
-		public ActionResult About()
+		public ActionResult Index(int? id = null)
 		{
-			return View();
-		}
+		    Mapper.CreateMap<City, CityModel>();
+            var cities = Mapper.Map<IList<City>, List<CityModel>>(_citiesService.GetCities());
+		    
 
-		public ActionResult Index()
-		{
-			ViewBag.Message = "Welcome to ToBeSeen WebSite!";
+            var model = new CitiesModel
+            {
+                Cities = cities
+            };
 
-			return View();
+		    if (id.HasValue)
+		    {
+                model.SelectedCity = cities.Single(x => x.Id == id).Name;
+		    }
+            
+            return View(model);
 		}
 	}
 }

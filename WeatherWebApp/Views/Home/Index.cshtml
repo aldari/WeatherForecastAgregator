@@ -1,7 +1,17 @@
-﻿@{
+﻿@using NHibernate.Mapping
+@model WeatherWebApp.Models.CitiesModel
+@{
 	ViewBag.Title = "Home Page";
 }
 
-<h2>@ViewBag.Message</h2>
-@*<h2>@ViewBag.EventCount event(s) are already registered!</h2>*@
-@*<p>@Html.ActionLink("View your events", "Index", "Events")</p>*@
+<div id="wrapper">
+<ul id="menu">
+        @foreach (var city in @Model.Cities)
+        {
+            <li>@Html.ActionLink(city.Name, "Index", new { Id = city.Id} )</li>
+        }
+</ul>
+
+<h2>@Model.SelectedCity</h2>
+    
+</div>
