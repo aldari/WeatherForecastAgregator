@@ -5,23 +5,24 @@ using AutoMapper;
 using DotNetOpenAuth.OpenId.Extensions.AttributeExchange;
 using Services.Core;
 using Services.Core.Entities;
+using Services.Core.Services.Dto;
 using WeatherWebApp.Models;
 
 namespace WeatherWebApp.Controllers
 {
 	public class HomeController : Controller
 	{
-	    private IGetCitiesService _citiesService;
-		public HomeController(IGetCitiesService getCitiesService)
+	    private readonly IGetCitiesService _citiesService;
+	    private readonly IAverageDataService _averageDataService;
+		public HomeController(IGetCitiesService getCitiesService, IAverageDataService averageDataService)
 		{
 		    _citiesService = getCitiesService;
+		    _averageDataService = averageDataService;
 		}
 
-		public ActionResult Index(int? id = null)
+	    public ActionResult Index(int? id = null)
 		{
-		    Mapper.CreateMap<City, CityModel>();
             var cities = Mapper.Map<IList<City>, List<CityModel>>(_citiesService.GetCities());
-		    
 
             var model = new CitiesModel
             {
@@ -31,6 +32,8 @@ namespace WeatherWebApp.Controllers
 		    if (id.HasValue)
 		    {
                 model.SelectedCity = cities.Single(x => x.Id == id).Name;
+                var forecasts = Mapper.Map<IList<AvgForecastDto>, List<ForecastModel>>(_averageDataService.GetAverageDataForOneCity(id.Value));
+		        model.Forecasts = forecasts;
 		    }
             
             return View(model);

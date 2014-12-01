@@ -50,6 +50,7 @@ namespace WeatherWebApp
 			RegisterGlobalFilters(GlobalFilters.Filters);
 			RegisterRoutes(RouteTable.Routes);
 			BootstrapContainer();
+            AutoMapperConfiguration.Configure();
 		}
 
 		private FormsAuthenticationTicket TryDecryptCookie(HttpCookie cookie)

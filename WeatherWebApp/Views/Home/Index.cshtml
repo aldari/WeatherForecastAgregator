@@ -14,4 +14,21 @@
 
 <h2>@Model.SelectedCity</h2>
     
+    <table>
+        <thead>
+            <tr>
+                <td>Дата</td>
+                <td>Ср. влажность</td>
+                <td>Ср. температура</td>
+            </tr>
+        </thead>
+        @foreach (var forecast in @Model.Forecasts)
+        {
+            <tr>
+                <td>@forecast.Date</td>
+                <td>@forecast.Humidity</td>
+                <td>@forecast.Temperature</td>
+            </tr>
+        }
+    </table>
 </div>

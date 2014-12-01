@@ -8,5 +8,6 @@ namespace WeatherWebApp.Models
         public IEnumerable<CityModel> Cities { get; set; }
 
         public String SelectedCity { get; set; }
+        public List<ForecastModel> Forecasts { get; set; }
     }
 }
