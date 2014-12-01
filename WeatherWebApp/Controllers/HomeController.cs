@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
-using DotNetOpenAuth.OpenId.Extensions.AttributeExchange;
 using Services.Core;
 using Services.Core.Entities;
 using Services.Core.Services.Dto;

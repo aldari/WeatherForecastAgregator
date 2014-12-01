@@ -8,7 +8,8 @@ namespace WeatherWebApp.Plumbing
     {
         protected override void Configure()
         {
-            CreateMap<City, CityModel>();
+            CreateMap<City, CityModel>()
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.NativeName));
         }
     }
 }

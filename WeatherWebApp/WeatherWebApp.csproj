@@ -115,7 +115,7 @@
     <Compile Include="Models\CityModel.cs" />
     <Compile Include="Models\ForecastModel.cs" />
     <Compile Include="Plumbing\AppIdentity.cs" />
-    <Compile Include="Plumbing\Copy of ToForecastModelProfile.cs" />
+    <Compile Include="Plumbing\ToCityModelProfile.cs" />
     <Compile Include="Plumbing\ToForecastModelProfile.cs" />
     <Compile Include="Plumbing\AutoMapperConfiguration.cs" />
     <Compile Include="Plumbing\WindsorControllerFactory.cs" />
