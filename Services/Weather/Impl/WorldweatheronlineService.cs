@@ -8,11 +8,24 @@ namespace Services.Weather.Impl
 {
     public class WorldweatheronlineService
     {
-        public IEnumerable<ForecastDto> ForecastData(String content)
+        private readonly IQueryLoader _queryLoader;
+        public WorldweatheronlineService(IQueryLoader loader)
         {
+            _queryLoader = loader;
+        }
+
+        private String RequestPath(String city)
+        {
+            const string magicString = "http://api.worldweatheronline.com/free/v2/weather.ashx?q={0}&format=xml&num_of_days=5&key=7a7ca84ff9b809b9731e3bb53a421";
+            return String.Format(magicString, city);
+        }
+
+        public IEnumerable<ForecastDto> ForecastData(String city)
+        {
+            var content = _queryLoader.LoadData(RequestPath(city));
             XElement xelement = XElement.Parse(content);
-            var forecastNodes = xelement.Element("forecast").Element("simpleforecast").Element("forecastdays").Elements();
-            return forecastNodes.Select(ParseNode).ToList();
+            
+            return xelement.Elements("weather").Select(ParseNode).ToList();
         }
 
         public ForecastDto ParseNode(XElement node)

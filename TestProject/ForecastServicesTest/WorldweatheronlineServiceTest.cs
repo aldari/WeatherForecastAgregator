@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using Moq;
 using NUnit.Framework;
 using Services;
 using Services.Weather.Impl;
@@ -10,27 +11,18 @@ namespace TestProject.ForecastServicesTest
     [TestFixture]
     class WorldweatheronlineServiceTest
     {
-        public void Test()
-        {
-            const string magicString = "http://api.worldweatheronline.com/free/v1/weather.ashx?q={0}&format=xml&num_of_days=5&key=7a7ca84ff9b809b9731e3bb53a421";
-            var uri = String.Format(magicString, "Chelyabinsk");
-
-            var xmld = new QueryLoader().LoadData(uri);
-            //Console.WriteLine(xmld);
-
-            File.WriteAllText("worldweatheronlineAll.txt", xmld);
-        }
-
         [Test]
         public void WundergroundForecastTest()
         {
-            String content = File.ReadAllText(@"mock/worldweatheronlineAll.txt");
-            var wundergroundService = new WorldweatheronlineService();
+            var city = "Chelyabinsk";
+            var mockLoader = new Mock<IQueryLoader>();
+            mockLoader.Setup(m => m.LoadData(It.IsAny<String>())).Returns(File.ReadAllText(@"mock/worldweatheronline.txt"));
+            var worldweatheronlineService = new WorldweatheronlineService(mockLoader.Object);
 
-            var result = wundergroundService.ForecastData(content);
+            var result = worldweatheronlineService.ForecastData(city);
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(10, result.Count());
+            Assert.AreEqual(5, result.Count());
         }
 
     }
