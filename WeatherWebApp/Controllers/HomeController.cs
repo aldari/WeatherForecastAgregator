@@ -13,10 +13,13 @@ namespace WeatherWebApp.Controllers
 	{
 	    private readonly IGetCitiesService _citiesService;
 	    private readonly IAverageDataService _averageDataService;
-		public HomeController(IGetCitiesService getCitiesService, IAverageDataService averageDataService)
+	    private readonly IUpdateDataForCitiesThroughEachService _updateDataService;
+
+		public HomeController(IGetCitiesService getCitiesService, IAverageDataService averageDataService, IUpdateDataForCitiesThroughEachService updateDataService)
 		{
 		    _citiesService = getCitiesService;
 		    _averageDataService = averageDataService;
+		    _updateDataService = updateDataService;
 		}
 
 	    public ActionResult Index(int? id = null)
@@ -38,5 +41,12 @@ namespace WeatherWebApp.Controllers
             
             return View(model);
 		}
+
+        [HttpPost]
+	    public ActionResult UpdateData()
+	    {
+            _updateDataService.Execute();
+            return RedirectToAction("Index");
+	    }
 	}
 }

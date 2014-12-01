@@ -11,8 +11,13 @@
             <li>@Html.ActionLink(city.Name, "Index", new { Id = city.Id} )</li>
         }
 </ul>
+    
+    @using (Html.BeginForm("UpdateData", "Home"))
+    {
+        <input type="submit" value="Обновить данные"/>
+    }
 
-<h2>@Model.SelectedCity</h2>
+    <h2>@Model.SelectedCity</h2>
     
     <table>
         <thead>
