@@ -12,7 +12,7 @@ namespace TestProject.ForecastServicesTest
     class WorldweatheronlineServiceTest
     {
         [Test]
-        public void WundergroundForecastTest()
+        public void WorldweatheronlineForecastTest()
         {
             var city = "Chelyabinsk";
             var mockLoader = new Mock<IQueryLoader>();
@@ -25,5 +25,22 @@ namespace TestProject.ForecastServicesTest
             Assert.AreEqual(5, result.Count());
         }
 
+
+        [Test]
+        public void ParseXmlForWorldweatheronlineForecast()
+        {
+            var city = "Chelyabinsk";
+            var mockLoader = new Mock<IQueryLoader>();
+            mockLoader.Setup(m => m.LoadData(It.IsAny<String>())).Returns(File.ReadAllText(@"mock/worldweatheronline.txt"));
+            var worldweatheronlineService = new WorldweatheronlineService(mockLoader.Object);
+
+            var result = worldweatheronlineService.ForecastData(city);
+            var dto = result.First();
+
+            Assert.AreEqual(new DateTime(2014, 12, 1), dto.Date);
+            
+            Assert.AreEqual(90, dto.Humidity);
+            Assert.AreEqual(-7, dto.MaxTemperature);
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace Services
             // не меняйте значения уже существующих классов
             priorities.Add(typeof (OpenweathermapService), 1);
             priorities.Add(typeof (WundergroundService), 2);
+            priorities.Add(typeof (WorldweatheronlineService), 3);
         }
 
         public int IdentifierFor(Type type)

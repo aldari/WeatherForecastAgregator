@@ -5,7 +5,6 @@ namespace TestProject
 {
     public class GenerateDatabase
     {
-        [Test]
         public void GenerateDb()
         {
             var o = new GenerateDb();

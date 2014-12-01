@@ -6,7 +6,7 @@ using Services.Weather.Dto;
 
 namespace Services.Weather.Impl
 {
-    public class WorldweatheronlineService
+    public class WorldweatheronlineService: IForecastService
     {
         private readonly IQueryLoader _queryLoader;
         public WorldweatheronlineService(IQueryLoader loader)
@@ -30,7 +30,17 @@ namespace Services.Weather.Impl
 
         public ForecastDto ParseNode(XElement node)
         {
-            return new ForecastDto();
+            var date = DateTime.Parse(node.Element("date").Value);
+            var temperature = Int32.Parse(node.Element("maxtempC").Value);
+            var humadity = Int32.Parse((node.Elements("hourly").ToList()[4]).Element("humidity").Value);
+
+
+            return new ForecastDto
+            {
+                Date = date,
+                MaxTemperature = temperature,
+                Humidity = humadity
+            };
         }
     }
 }

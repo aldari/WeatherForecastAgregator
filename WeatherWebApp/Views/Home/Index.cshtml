@@ -23,12 +23,12 @@
             </tr>
         </thead>
         @foreach (var forecast in @Model.Forecasts)
-        {
-            <tr>
-                <td>@forecast.Date</td>
-                <td>@forecast.Humidity</td>
-                <td>@forecast.Temperature</td>
-            </tr>
-        }
+            {
+                <tr>
+                    <td>@forecast.Date</td>
+                    <td>@forecast.Humidity</td>
+                    <td>@forecast.Temperature</td>
+                </tr>
+            }
     </table>
 </div>

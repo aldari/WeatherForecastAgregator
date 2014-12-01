@@ -25,7 +25,8 @@ namespace WeatherWebApp.Controllers
 
             var model = new CitiesModel
             {
-                Cities = cities
+                Cities = cities,
+                Forecasts = new List<ForecastModel>()
             };
 
 		    if (id.HasValue)
