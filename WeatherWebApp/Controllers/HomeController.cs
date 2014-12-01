@@ -1,6 +1,8 @@
 ﻿using System.Web.Mvc;
+using DotNetOpenAuth.OpenId.Extensions.AttributeExchange;
+using WeatherWebApp.Models;
 
-namespace ToBeSeen.Controllers
+namespace WeatherWebApp.Controllers
 {
 	public class HomeController : Controller
 	{

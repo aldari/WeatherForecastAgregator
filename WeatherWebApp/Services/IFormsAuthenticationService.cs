@@ -1,4 +1,4 @@
-namespace ToBeSeen.Services
+namespace WeatherWebApp.Services
 {
 	public interface IFormsAuthenticationService
 	{

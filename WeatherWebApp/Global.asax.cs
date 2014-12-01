@@ -4,15 +4,12 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-
 using Castle.Windsor;
 using Castle.Windsor.Installer;
-
 using HibernatingRhinos.Profiler.Appender.NHibernate;
+using WeatherWebApp.Plumbing;
 
-using ToBeSeen.Plumbing;
-
-namespace ToBeSeen
+namespace WeatherWebApp
 {
 	public class MvcApplication : HttpApplication
 	{

@@ -1,6 +1,6 @@
 using System.Web.Security;
 
-namespace ToBeSeen.Services
+namespace WeatherWebApp.Services
 {
 	public class FormsAuthenticationService : IFormsAuthenticationService
 	{

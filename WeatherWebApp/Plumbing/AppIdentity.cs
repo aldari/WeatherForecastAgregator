@@ -2,7 +2,7 @@ using System;
 using System.Security.Principal;
 using System.Web.Security;
 
-namespace ToBeSeen.Plumbing
+namespace WeatherWebApp.Plumbing
 {
 	public class AppIdentity : IIdentity
 	{
