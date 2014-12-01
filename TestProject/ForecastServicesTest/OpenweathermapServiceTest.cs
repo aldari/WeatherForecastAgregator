@@ -19,7 +19,7 @@ namespace TestProject.ForecastServicesTest
             var service = new OpenweathermapService(mockLoader.Object);
 
             var result = service.ForecastData(city);
-            var dto = result.First();
+            var dto = result.Items.First();
             
             Assert.AreEqual(new DateTime(2014, 11, 23), dto.Date);
             Assert.AreEqual("небольшой снегопад", dto.Description);
@@ -41,7 +41,7 @@ namespace TestProject.ForecastServicesTest
             var result = service.ForecastData(city);
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(10, result.Count());
+            Assert.AreEqual(10, result.Items.Count());
         }
     }
 }

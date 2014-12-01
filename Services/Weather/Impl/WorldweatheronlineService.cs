@@ -20,12 +20,28 @@ namespace Services.Weather.Impl
             return String.Format(magicString, city);
         }
 
-        public IEnumerable<ForecastDto> ForecastData(String city)
+        public ForecastResponseDto ForecastData(String city)
         {
-            var content = _queryLoader.LoadData(RequestPath(city));
-            XElement xelement = XElement.Parse(content);
-            
-            return xelement.Elements("weather").Select(ParseNode).ToList();
+            try
+            {
+                var content = _queryLoader.LoadData(RequestPath(city));
+                XElement xelement = XElement.Parse(content);
+
+                return new ForecastResponseDto
+                {
+                    Success = true,
+                    Items = xelement.Elements("weather").Select(ParseNode)
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ForecastResponseDto
+                {
+                    Success = true,
+                    Message = ex.Message,
+                    Items = new List<ForecastDto>()
+                };
+            }
         }
 
         public ForecastDto ParseNode(XElement node)

@@ -20,7 +20,7 @@ namespace TestProject.ForecastServicesTest
             var wundergroundService = new WundergroundService(mockLoader.Object);
 
             var result = wundergroundService.ForecastData(city);
-            var dto = result.First();
+            var dto = result.Items.First();
 
             Assert.AreEqual(new DateTime(2014, 11, 21), dto.Date);
             Assert.AreEqual("Облачно", dto.Description);
@@ -42,7 +42,7 @@ namespace TestProject.ForecastServicesTest
             var result = wundergroundService.ForecastData(city);
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(10, result.Count());
+            Assert.AreEqual(10, result.Items.Count());
         }
     }
 }

@@ -22,7 +22,7 @@ namespace TestProject.ForecastServicesTest
             var result = worldweatheronlineService.ForecastData(city);
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(5, result.Count());
+            Assert.AreEqual(5, result.Items.Count());
         }
 
 
@@ -35,7 +35,7 @@ namespace TestProject.ForecastServicesTest
             var worldweatheronlineService = new WorldweatheronlineService(mockLoader.Object);
 
             var result = worldweatheronlineService.ForecastData(city);
-            var dto = result.First();
+            var dto = result.Items.First();
 
             Assert.AreEqual(new DateTime(2014, 12, 1), dto.Date);
             

@@ -18,7 +18,7 @@ namespace TestConsoleApplication
             {
                 var data = forecastService.ForecastData("Chelyabinsk");
                 Console.WriteLine(forecastService.GetType().ToString());
-                foreach (var dto in data)
+                foreach (var dto in data.Items)
                 {
                     Console.WriteLine(dto.Date);
                     Console.WriteLine(dto.MaxTemperature);

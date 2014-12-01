@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using Services.Weather.Dto;
@@ -21,12 +20,27 @@ namespace Services.Weather.Impl
             return String.Format(magicString, city);
         }
 
-        public IEnumerable<ForecastDto> ForecastData(String city)
+        public ForecastResponseDto ForecastData(String city)
         {
-            var content = _queryLoader.LoadData(RequestPath(city));
-            XElement xelement = XElement.Parse(content);
-            var forecastNodes = xelement.Element("forecast").Element("simpleforecast").Element("forecastdays").Elements();
-            return forecastNodes.Select(ParseNode);
+            try
+            {
+                var content = _queryLoader.LoadData(RequestPath(city));
+                XElement xelement = XElement.Parse(content);
+                var forecastNodes = xelement.Element("forecast").Element("simpleforecast").Element("forecastdays").Elements();
+                return new ForecastResponseDto
+                {
+                    Success = true,
+                    Items = forecastNodes.Select(ParseNode)
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ForecastResponseDto
+                {
+                    Success = false,
+                    Message = ex.Message
+                };
+            }
         }
 
         private ForecastDto ParseNode(XElement node)

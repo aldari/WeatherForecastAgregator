@@ -37,11 +37,14 @@ namespace Services.Core.Services
             var result = service.ForecastData(city.Name);
             var serviceId = _identifier.IdentifierFor(service.GetType());
 
-            var data =
-                _forecastRepository.GetAll().Where(x => x.City.Id == city.Id && x.Service.Id == serviceId);
+            if (!result.Success)
+                return;
+            var data = _forecastRepository
+                .GetAll()
+                .Where(x => x.City.Id == city.Id && x.Service.Id == serviceId);
             foreach (var item in data)
                 _forecastRepository.Delete(item.Id);
-            foreach (var dto in result)
+            foreach (var dto in result.Items)
             {
                 _forecastRepository.Insert(new WeatherForecast
                 {
